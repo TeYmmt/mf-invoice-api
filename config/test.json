@@ -2,7 +2,7 @@
   "MF_INVOICE_API": {
     "ORIGIN_URL": "https://invoice.moneyforward.com",
     "ACCESS_TOKEN_URL": "https://invoice.moneyforward.com/oauth/token",
-    "REFRESH_TOKEN_URL": "https://invoice.moneyforward.com/oauth/revoke",
+    "REFRESH_TOKEN_URL": "https://invoice.moneyforward.com/oauth/token",
     "REDIRECT_URL": "[REDIRECT_URL]",
     "CLIENT_ID": "[CLIENT_ID]",
     "CLIENT_SECRET": "[CLIENT_SECRET]",

@@ -2,7 +2,8 @@ var request = require('request');
 var getParams = require('./getParams.js');
 
 function updateAccessToken(refreshToken, callback) {
-  var token = (callback && refreshToken) || (!callback && this && this.refreshToken);
+  var asProp = this;
+  var token = (callback && refreshToken) || (!callback && asProp && asProp.refreshToken);
   if (!callback && typeof refreshToken === 'function') {
     callback = refreshToken;
   }
@@ -11,7 +12,7 @@ function updateAccessToken(refreshToken, callback) {
     return;
   }
 
-  var params = getParams(thiss && this.params);
+  var params = getParams(asProp && asProp.params);
   if (!params) {
     callback('Error : not exist params.');
     return;
@@ -20,14 +21,18 @@ function updateAccessToken(refreshToken, callback) {
   request.post(params.refreshTokenUrl, {
     form: {
       'client_id': params.clientId,
-      'client_secret': params.clientSecret,
-      'redirect_uri': params.redirectUrl,
       'grant_type': 'refresh_token',
-      code: token,
+      'refresh_token': token,
     }
   }, function (err, res, body) {
     if (!err && res.statusCode === 200) {
-      callback(null, true);
+      var newToken = JSON.parse(body);
+      if (this && typeof asProp.refreshToken === 'string' && typeof asProp.accessToken === 'string') {
+        asProp.refreshToken = newToken.refresh_token;
+        asProp.accessToken = newToken.access_token;
+      }
+      console.log(newToken);
+      callback(null, newToken);
     } else {
       callback('Error is ' + err + '. Status code is ' + res.statusCode);
     }
