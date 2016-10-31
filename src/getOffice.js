@@ -2,8 +2,9 @@ var request = require('request');
 var config = require('config');
 
 function getOffice(accessToken, callback) {
+  var asProp = this;
   var token = (typeof callback === 'function' && accessToken)
-    || (!callback && this && this.accessToken);
+    || (asProp && asProp.accessToken);
 
   if (!callback && typeof accessToken === 'function') {
     callback = accessToken;
@@ -28,17 +29,18 @@ function getOffice(accessToken, callback) {
       } else if(!err && res.statusCode === 401 && enableTry) {
         cb('unauthorized');
       } else {
-        cb('Error request. err is' + err + '. Status code is ' + res.statusCode);
+        cb('Error request. err is ' + err + '. Status code is ' + res.statusCode);
       }
     });
   };
 
   office(true, function(err, result) {
     if (err === 'unauthorized') {
-      if (this && this.updateAccessToken) {
-        this.updateAccessToken(function(err, refresh) {
+      if (asProp && asProp.updateAccessToken) {
+        asProp.updateAccessToken(function(err, newToken) {
           if (!err) {
-            office(function(err, result) {
+            token = asProp.accessToken;
+            office(false, function(err, result) {
               callback(err, result);
             });
           } else {
