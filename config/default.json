@@ -6,9 +6,6 @@
     "REDIRECT_URL": "[REDIRECT_URL]",
     "CLIENT_ID": "[CLIENT_ID]",
     "CLIENT_SECRET": "[CLIENT_SECRET]",
-    "AUTH_CODE": "[AUTH_CODE]",
-    "ENDPOINT": {
-      "OFFICE": "/api/v1/office"
-    }
+    "AUTH_CODE": "[AUTH_CODE]"
   }
 }
