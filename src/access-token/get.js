@@ -1,16 +1,12 @@
 var request = require('request');
 var getParams = require('./getParams.js');
 
-function getAccessToken(initParams, callback) {
-  var params = (callback && initParams && getParams(initParams)) || getParams();
-  if (!callback && typeof initParams === 'function') {
-    callback = initParams;
-  }
-  if (!params) {
-    callback('Error : not exist params.');
+function get(params, callback) {
+  if (!params || !callback) {
+    callback((!callback && 'not exist params.') || 'not arguments.');
     return;
   }
-  
+
   request.post(params.accessTokenUrl, {
     form: {
       'client_id': params.clientId,
@@ -28,4 +24,4 @@ function getAccessToken(initParams, callback) {
   });
 }
 
-module.exports = getAccessToken;
+module.exports = get;

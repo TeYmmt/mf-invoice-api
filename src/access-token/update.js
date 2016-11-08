@@ -1,7 +1,7 @@
 var request = require('request');
-var getParams = require('./getParams.js');
+var getParams = require('../lib/get-params.js');
 
-function updateAccessToken(refreshToken, callback) {
+function update(refreshToken, callback) {
   var asProp = this;
   var token = (callback && refreshToken) || (!callback && asProp && asProp.refreshToken);
   if (!callback && typeof refreshToken === 'function') {
@@ -39,4 +39,4 @@ function updateAccessToken(refreshToken, callback) {
   });
 }
 
-module.exports = updateAccessToken;
+module.exports = update;
