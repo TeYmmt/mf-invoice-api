@@ -1,5 +1,5 @@
 var request = require('request');
-var getParams = require('./getParams.js');
+var getParams = require('../lib/get-params.js');
 
 function get(params, callback) {
   if (!params || !callback) {

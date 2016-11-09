@@ -7,7 +7,7 @@ function getParams(config) {
     clientSecret: config.CLIENT_SECRET,
     redirectUrl: config.REDIRECT_URL,
     authCode: config.AUTH_CODE,
-  }) || {
+  } || {
     originUrl: 'https://invoice.moneyforward.com',
     accessTokenUrl: 'https://invoice.moneyforward.com/oauth/token',
     refreshTokenUrl: 'https://invoice.moneyforward.com/oauth/token',
