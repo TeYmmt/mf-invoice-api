@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var mfInvoiceApi = require('../index.js');
+var mfInvoiceApi = require('../src/index.js');
 var config = require('config');
 
 describe('index.js', function() {

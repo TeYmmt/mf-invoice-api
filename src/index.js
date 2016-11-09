@@ -28,9 +28,9 @@ function refreshInfo(err, newInfo) {
   info.scope = (!err && newInfo.scope) || (info && info.scope) || 'error';
 }
 
-var office = require('./src/office');
-var partners = require('./src/partners');
-var billings = require('./src/billings');
+var office = require('./office');
+var partners = require('./partners');
+var billings = require('./billings');
 
 var mfInvoiceApi = {
   init: init,
@@ -42,7 +42,7 @@ var mfInvoiceApi = {
             refreshInfo(err, newInfo);
             office.get(info.accessToken, function(err, res) {
               cb(err, res);
-            };
+            });
           });
         } else {
           cb(err, res);
@@ -51,42 +51,42 @@ var mfInvoiceApi = {
     },
   },
   partners: {
-    create: function (cb) {
-      partners.create(info.accessToken, function(err, res) {
+    create: function (params, cb) {
+      partners.create(info.accessToken, params, function(err, res) {
         if (err === 401) {
           accessToken.update(info.refreshToken, function(err, newInfo) {
             refreshInfo(err, newInfo);
-            partners.create(info.accessToken, function(err, res) {
+            partners.create(info.accessToken, params, function(err, res) {
               cb(err, res);
-            };
+            });
           });
         } else {
           cb(err, res);
         }
       });
     },
-    update: function (cb) {
-      partners.update(info.accessToken, function(err, res) {
+    update: function (id, params, cb) {
+      partners.update(info.accessToken, id, params, function(err, res) {
         if (err === 401) {
           accessToken.update(info.refreshToken, function(err, newInfo) {
             refreshInfo(err, newInfo);
-            partners.update(info.accessToken, function(err, res) {
+            partners.update(info.accessToken, id, params, function(err, res) {
               cb(err, res);
-            };
+            });
           });
         } else {
           cb(err, res);
         }
       });
     },
-    getOne: function (cb) {
-      partners.getOne(info.accessToken, function(err, res) {
+    getOne: function (id, cb) {
+      partners.getOne(info.accessToken, id, function(err, res) {
         if (err === 401) {
           accessToken.update(info.refreshToken, function(err, newInfo) {
             refreshInfo(err, newInfo);
-            partners.getOne(info.accessToken, function(err, res) {
+            partners.getOne(info.accessToken, id, function(err, res) {
               cb(err, res);
-            };
+            });
           });
         } else {
           cb(err, res);
@@ -95,42 +95,42 @@ var mfInvoiceApi = {
     },
   },
   billings: {
-    create: function (cb) {
-      billings.create(info.accessToken, function(err, res) {
+    create: function (params, cb) {
+      billings.create(info.accessToken, params, function(err, res) {
         if (err === 401) {
           accessToken.update(info.refreshToken, function(err, newInfo) {
             refreshInfo(err, newInfo);
-            billings.create(info.accessToken, function(err, res) {
+            billings.create(info.accessToken, params, function(err, res) {
               cb(err, res);
-            };
+            });
           });
         } else {
           cb(err, res);
         }
       });
     },
-    posting: function (cb) {
-      billings.update(info.accessToken, function(err) {
+    posting: function (id, cb) {
+      billings.posting(info.accessToken, id, function(err) {
         if (err === 401) {
           accessToken.update(info.refreshToken, function(err, newInfo) {
             refreshInfo(err, newInfo);
-            billings.posting(info.accessToken, function(err) {
+            billings.posting(info.accessToken, id, function(err) {
               cb(err);
-            };
+            });
           });
         } else {
           cb(err);
         }
       });
     },
-    getOne: function (cb) {
-      billings.getOne(info.accessToken, function(err, res) {
+    getOne: function (id, cb) {
+      billings.getOne(info.accessToken, id, function(err, res) {
         if (err === 401) {
           accessToken.update(info.refreshToken, function(err, newInfo) {
             refreshInfo(err, newInfo);
-            billings.getOne(info.accessToken, function(err, res) {
+            billings.getOne(info.accessToken, id, function(err, res) {
               cb(err, res);
-            };
+            });
           });
         } else {
           cb(err, res);
@@ -140,14 +140,6 @@ var mfInvoiceApi = {
   },
   getAccessToken: accessToken.get,
   updateAccessToken: accessToken.update,
-  saveAccessToken: function(newParams, cb) {
-    var params = (callback && newParams) || null;
-    var callback = (!cb && newParams) || cb;
-    accessToken.get(params || info.params, function(err, tokenInfo) {
-      refreshInfo(err, tokenInfo);
-      callback(err, info);
-    });
-  },
 };
 
 module.exports = mfInvoiceApi;

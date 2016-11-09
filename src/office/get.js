@@ -14,7 +14,6 @@ function get(token, cb) {
   request.get(uri, {
     headers: {
       Authorization: 'BEARER ' + token,
-      'content-type': 'application/json',
     }
   }, function(err, res, body) {
     if (!err && res.statusCode === 200) {
