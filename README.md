@@ -3,28 +3,28 @@ Node.js implementation for https://github.com/moneyforward/invoice-api-doc
 This is always in Beta.   
 
 ## now implementation list
-:white_check_mark: 事業所情報の取得 GET /api/v1/office.json
-:white_medium_square: 事業所情報の編集 PATCH /api/v1/office
-:white_medium_square: 取引先一覧の取得 GET /api/v1/partners.json
-:white_check_mark: 取引先の取得 GET /api/v1/partners/:id.json
-:white_check_mark: 取引先の作成 POST /api/v1/partners
-:white_check_mark: 取引先の更新 PATCH /api/v1/partners/:id
-:white_medium_square: 取引先の削除 DELETE /api/v1/partners/:id
-:white_medium_square: 請求書一覧の取得 GET /api/v1/billings.json
-:white_medium_square: 請求書一覧の検索 GET /api/v1/billings/search.json
-:white_check_mark: 請求書の取得 GET /api/v1/billings/:id.json
-:white_medium_square: 請求書pdfの取得 GET /api/v1/billings/:id.pdf
-:white_check_mark: 請求書の作成 POST /api/v1/billings
-:white_medium_square: 請求書の更新 PATCH /api/v1/billings/:id
-:white_check_mark: 請求書の郵送 POST /api/v1/billings/:id/posting
-:white_medium_square: 請求書の郵送キャンセル POST /api/v1/billings/:id/cancel_posting
-:white_medium_square: 請求書の削除 DELETE /api/v1/billings/:id
-:white_medium_square: 品目一覧の取得 GET /api/v1/items.json
-:white_medium_square: 品目の取得 GET /api/v1/items/:id.json
-:white_medium_square: 品目の作成 POST /api/v1/items
-:white_medium_square: 品目の更新 PATCH /api/v1/items/:id
-:white_medium_square: 品目の削除 DELETE /api/v1/items/:id
-:white_medium_square: 送付履歴一覧の取得 GET /api/v1/sent_history.json
+- [x] 事業所情報の取得 GET /api/v1/office.json
+- [ ] 事業所情報の編集 PATCH /api/v1/office
+- [ ] 取引先一覧の取得 GET /api/v1/partners.json
+- [x] 取引先の取得 GET /api/v1/partners/:id.json
+- [x] 取引先の作成 POST /api/v1/partners
+- [x] 取引先の更新 PATCH /api/v1/partners/:id
+- [ ] 取引先の削除 DELETE /api/v1/partners/:id
+- [ ] 請求書一覧の取得 GET /api/v1/billings.json
+- [ ] 請求書一覧の検索 GET /api/v1/billings/search.json
+- [x] 請求書の取得 GET /api/v1/billings/:id.json
+- [ ] 請求書pdfの取得 GET /api/v1/billings/:id.pdf
+- [x] 請求書の作成 POST /api/v1/billings
+- [ ] 請求書の更新 PATCH /api/v1/billings/:id
+- [x] 請求書の郵送 POST /api/v1/billings/:id/posting
+- [ ] 請求書の郵送キャンセル POST /api/v1/billings/:id/cancel_posting
+- [ ] 請求書の削除 DELETE /api/v1/billings/:id
+- [ ] 品目一覧の取得 GET /api/v1/items.json
+- [ ] 品目の取得 GET /api/v1/items/:id.json
+- [ ] 品目の作成 POST /api/v1/items
+- [ ] 品目の更新 PATCH /api/v1/items/:id
+- [ ] 品目の削除 DELETE /api/v1/items/:id
+- [ ] 送付履歴一覧の取得 GET /api/v1/sent_history.json
 
 ## How to use this
 ```
