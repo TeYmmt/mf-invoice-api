@@ -16,12 +16,16 @@ function create(token, id, cb) {
       Authorization: 'BEARER ' + token,
     },
   }, function(err, res, body) {
+    var result = body && JSON.parse(body);
     if (!err && res.statusCode === 200) {
-      cb(null, JSON.parse(body));
+      cb(null, result);
     } else if(!err && res.statusCode === 401) {
       cb(401);
     } else {
-      cb('Error request. err is ' + err + '. Status code is ' + res.statusCode);
+      var errIs = 'Error request. err is ' + err + '.';
+      var statusCodeIs = ' Status code is ' + res.statusCode + '.';
+      var errContent = result && result.errors && JSON.stringify(result.errors);
+      cb(errIs + statusCodeIs + errContent);
     }
   });
 }
