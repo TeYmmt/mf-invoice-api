@@ -18,12 +18,16 @@ function create(token, id, cb) {
       Accept: 'application/json',
     },
   }, function(err, res, body) {
+    var result = body && JSON.parse(body);
     if (!err && res.statusCode === 200) {
       cb(null);
     } else if(!err && res.statusCode === 401) {
       cb(401);
     } else {
-      cb('Error request. err is ' + err + '. Status code is ' + res.statusCode);
+      var errIs = 'Error request. err is ' + err + '.';
+      var statusCodeIs = ' Status code is ' + res.statusCode + '.';
+      var errContent = result && result.errors && JSON.stringify(result.errors);
+      cb(errIs + statusCodeIs + errContent);
     }
   });
 }
