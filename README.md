@@ -9,7 +9,7 @@ This is always in Beta.
 - [x] 取引先の取得 GET /api/v1/partners/:id.json
 - [x] 取引先の作成 POST /api/v1/partners
 - [x] 取引先の更新 PATCH /api/v1/partners/:id
-- [ ] 取引先の削除 DELETE /api/v1/partners/:id
+- [x] 取引先の削除 DELETE /api/v1/partners/:id
 - [ ] 請求書一覧の取得 GET /api/v1/billings.json
 - [ ] 請求書一覧の検索 GET /api/v1/billings/search.json
 - [x] 請求書の取得 GET /api/v1/billings/:id.json
@@ -17,8 +17,8 @@ This is always in Beta.
 - [x] 請求書の作成 POST /api/v1/billings
 - [ ] 請求書の更新 PATCH /api/v1/billings/:id
 - [x] 請求書の郵送 POST /api/v1/billings/:id/posting
-- [ ] 請求書の郵送キャンセル POST /api/v1/billings/:id/cancel_posting
-- [ ] 請求書の削除 DELETE /api/v1/billings/:id
+- [x] 請求書の郵送キャンセル POST /api/v1/billings/:id/cancel_posting
+- [x] 請求書の削除 DELETE /api/v1/billings/:id
 - [ ] 品目一覧の取得 GET /api/v1/items.json
 - [ ] 品目の取得 GET /api/v1/items/:id.json
 - [ ] 品目の作成 POST /api/v1/items

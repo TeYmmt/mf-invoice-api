@@ -89,4 +89,28 @@ describe('sample spec', function() {
       done();
     });
   }).timeout(5000);
+
+  it('cancel the posting', function(done) {
+    mfInvoiceApi.billings.cancelPosting(billingId, function(err) {
+      expect(err).to.equal(null);
+      console.log(!err && 'canceled.');
+      done();
+    });
+  }).timeout(5000);
+
+  it('delete the bill', function(done) {
+    mfInvoiceApi.billings.delete(billingId, function(err) {
+      expect(err).to.equal(null);
+      console.log(!err && 'deleted.');
+      done();
+    });
+  }).timeout(5000);
+
+  it('delete the partner', function(done) {
+    mfInvoiceApi.partners.delete(partnerId, function(err, result) {
+      expect(err).to.equal(null);
+      console.log(!err && 'deleted.');
+      done();
+    });
+  }).timeout(5000);
 });

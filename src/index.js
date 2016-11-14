@@ -93,6 +93,20 @@ var mfInvoiceApi = {
         }
       });
     },
+    delete: function (id, cb) {
+      partners.delete(info.accessToken, id, function(err, res) {
+        if (err === 401) {
+          accessToken.update(info.refreshToken, function(err, newInfo) {
+            refreshInfo(err, newInfo);
+            partners.delete(info.accessToken, id, function(err, res) {
+              cb(err, res);
+            });
+          });
+        } else {
+          cb(err, res);
+        }
+      });
+    },
   },
   billings: {
     create: function (params, cb) {
@@ -123,6 +137,20 @@ var mfInvoiceApi = {
         }
       });
     },
+    cancelPosting: function (id, cb) {
+      billings.cancelPosting(info.accessToken, id, function(err) {
+        if (err === 401) {
+          accessToken.update(info.refreshToken, function(err, newInfo) {
+            refreshInfo(err, newInfo);
+            billings.cancelPosting(info.accessToken, id, function(err) {
+              cb(err);
+            });
+          });
+        } else {
+          cb(err);
+        }
+      });
+    },
     getOne: function (id, cb) {
       billings.getOne(info.accessToken, id, function(err, res) {
         if (err === 401) {
@@ -134,6 +162,20 @@ var mfInvoiceApi = {
           });
         } else {
           cb(err, res);
+        }
+      });
+    },
+    delete: function (id, cb) {
+      billings.delete(info.accessToken, id, function(err) {
+        if (err === 401) {
+          accessToken.update(info.refreshToken, function(err, newInfo) {
+            refreshInfo(err, newInfo);
+            billings.delete(info.accessToken, id, function(err) {
+              cb(err);
+            });
+          });
+        } else {
+          cb(err);
         }
       });
     },
