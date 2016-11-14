@@ -2,7 +2,7 @@ var request = require('request');
 var config = require('config');
 var endpoints = require('../lib/endpoints.js');
 
-function create(token, id, cb) {
+function posting(token, id, cb) {
   if (!token || !id || !cb) {
     cb('Failed arguments.');
     return;
@@ -32,4 +32,4 @@ function create(token, id, cb) {
   });
 }
 
-module.exports = create;
+module.exports = posting;

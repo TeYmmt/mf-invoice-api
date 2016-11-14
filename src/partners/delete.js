@@ -2,22 +2,22 @@ var request = require('request');
 var config = require('config');
 var endpoints = require('../lib/endpoints.js');
 
-function getOne(token, id, cb) {
+function deletePartner(token, id, cb) {
   if (!token || !id || !cb) {
     cb('Failed arguments.');
     return;
   }
 
   var endpoint = config.MF_INVOICE_API.ENDPOINT && config.MF_INVOICE_API.ENDPOINT.PARTNERS || endpoints.PARTNERS;
-  var uri = config.MF_INVOICE_API.ORIGIN_URL + endpoint + '/' + id + '.json';
+  var uri = config.MF_INVOICE_API.ORIGIN_URL + endpoint + '/' + id;
 
-  request.get(uri, {
+  request.delete(uri, {
     headers: {
       Authorization: 'BEARER ' + token,
     }
   }, function(err, res, body) {
     var result = body && JSON.parse(body);
-    if (!err && res.statusCode === 200) {
+    if (!err && res.statusCode === 204) {
       cb(null, result);
     } else if(!err && res.statusCode === 401) {
       cb(401);
@@ -30,4 +30,4 @@ function getOne(token, id, cb) {
   });
 }
 
-module.exports = getOne;
+module.exports = deletePartner;
